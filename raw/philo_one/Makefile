@@ -13,7 +13,7 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) $(HPP)
+$(NAME): $(OBJ) $(H)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ);
 
 clean:
