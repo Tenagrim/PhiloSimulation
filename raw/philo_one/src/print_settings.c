@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_settings.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:05:56 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:38:51 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/15 20:20:02 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/15 20:39:27 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int main(int ac, char **av)
+void			print_settings(t_sim_settings *setts)
 {
-	t_sim_settings	setts;
-	check_input(ac, av);
-	get_sim_settings(&setts, av);
-	print_settings(&setts);
+	printf("phil count:     %u\n", setts->phil_count);
+	printf("time to die:    %u\n", setts->time_to_die);
+	printf("time to sleep:  %u\n", setts->time_to_sleep);
+	printf("time to eat:    %u\n", setts->time_to_eat);
+	printf("times must eat: %d\n", setts->times_must_eat);
 }

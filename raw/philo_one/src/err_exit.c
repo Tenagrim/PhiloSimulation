@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   err_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:05:56 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:38:51 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/15 20:03:57 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/15 20:05:39 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <philo.h>
 
-int main(int ac, char **av)
+void	err_exit(char *str, int code)
 {
-	t_sim_settings	setts;
-	check_input(ac, av);
-	get_sim_settings(&setts, av);
-	print_settings(&setts);
+	write(2, str, ft_strlen(str));
+	exit(code);
 }
+

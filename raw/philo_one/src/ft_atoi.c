@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:05:56 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:38:51 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/15 20:30:07 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/15 20:32:15 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
-
-int main(int ac, char **av)
+int		ft_atoi(char *str)
 {
-	t_sim_settings	setts;
-	check_input(ac, av);
-	get_sim_settings(&setts, av);
-	print_settings(&setts);
+	int res = 0;
+	while (*str)
+	{
+		res = res * 10 + (*str - '0');
+		str++;
+	}
+	return (res);
 }

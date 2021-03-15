@@ -1,8 +1,11 @@
 NAME=philo_one
-SRC=src/*.c
-H=philo.h
+SRC_DIR = src/
+OBJ_DIR = src/
+SRC_FILES = $(shell ls -1 src | grep "\.c")
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJ = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
+H=includes/philo.h
 CC= gcc
-OBJ=$(SRC:.c=.o)
 FLAGS= -Iincludes  -Wall -Wextra # -Werror 
 
 all: $(NAME)
@@ -20,5 +23,4 @@ fclean: clean
 	rm -rf $(NAME);
 
 re: fclean all
-
 

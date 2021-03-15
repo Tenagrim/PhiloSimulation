@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_sim_settings.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:05:56 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:38:51 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/15 19:57:32 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/15 20:37:25 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <philo.h>
 
-int main(int ac, char **av)
+void	get_sim_settings(t_sim_settings *setts, char **av)
 {
-	t_sim_settings	setts;
-	check_input(ac, av);
-	get_sim_settings(&setts, av);
-	print_settings(&setts);
+	setts->phil_count = ft_atoi(av[1]);
+	setts->time_to_die = ft_atoi(av[2]);
+	setts->time_to_eat = ft_atoi(av[3]);
+	setts->time_to_sleep = ft_atoi(av[4]);
+	if (av[5])
+		setts->times_must_eat = ft_atoi(av[5]);
+	else
+		setts->times_must_eat = -1;
 }
