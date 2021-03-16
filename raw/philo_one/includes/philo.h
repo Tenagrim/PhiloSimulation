@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:57:35 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 23:14:32 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/16 22:15:41 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@
 # define ST_EATING		1
 # define ST_SLEEPING	2
 # define ST_DEAD		3
+# define ST_TAKE_FORK	5
+# define P_LAUNCH_RANGE 0
+# define P_WAIT_FORK_STEP 10
+# define P_WT 3
 
 typedef struct timeval t_timeval;
-typedef struct pthread_mutex_t t_mutex;
+typedef pthread_mutex_t t_mutex;
 
 typedef struct	s_sim_settings
 {
@@ -31,24 +35,36 @@ typedef struct	s_sim_settings
 	unsigned long	time_to_die;
 	unsigned long	time_to_sleep;
 	unsigned long	time_to_eat;
-	int				times_must_eat;
+	unsigned int	times_must_eat;
 
 }				t_sim_settings;
 
-typedef struct
+typedef struct		s_philo
 {
 	unsigned int	num;
 	int				state;
+	unsigned int	times_eated;
 	t_timeval		last_eat;
 	t_timeval		*start_time;
 	t_mutex			*out_mutex;
+	t_mutex			*get_time_mut;
+	t_mutex			*death_trigger;
+	t_mutex			*l_fork;
+	t_mutex			*r_fork;
+	t_sim_settings	*settings;
+	struct s_philo	*l_philo;
+	struct s_philo	*r_philo;
 }				t_philo;
 
 typedef struct
 {
 	t_philo			*philos;
+	t_mutex			*forks;
+	pthread_t		*threads;
 	t_timeval		start_time;
-	pthread_mutex_t	out_mutex;
+	t_mutex			out_mutex;
+	t_mutex			get_time_mut;
+	t_mutex			death_trigger;
 	t_sim_settings	settings;
 }				t_simulation;
 
@@ -68,8 +84,28 @@ int				main_loop(t_simulation *sim);
 unsigned long	get_time_diff(t_timeval *t1, t_timeval *t2);
 unsigned long	get_time_udiff(t_timeval *t1, t_timeval *t2);
 void			*philo_life(void *args);
-void			display_philo(t_philo *philo, t_mutex *out_mutex);
+void			display_philo(t_philo *philo);
 t_life_args		*new_life_args(t_simulation *sim, int cur);
 void			init_philos(t_simulation *sim);
 void			destroy_philos(t_simulation *sim);
+void			init_simulation(t_simulation *sim);
+void			destroy_simulation(t_simulation *sim);
+void			run_simulation(t_simulation *sim);
+int				lock_f(t_mutex *mut);
+int				unlock_f(t_mutex *mut);
+void			start_philos(t_simulation *sim);
+void			*ft_malloc(unsigned int size);
+void			init_forks(t_simulation *sim);
+void			destroy_forks(t_simulation *sim);
+int				circuled_num(int value, int size);
+int				get_timestamp(t_timeval *tv, t_mutex *mut);
+void			display_message(t_philo *p, int state);
+void			take_forks(t_philo *philo);
+void			drop_forks(t_philo *philo);
+void			eat(t_philo *philo);
+void			sleep_(t_philo *philo);
+void			usleep_from(t_timeval *start, unsigned long millis, t_mutex *mut);
+void			die(t_philo *philo);
+void			display_philo(t_philo *philo);
+void			ft_putunbr_fd(int fd, long unsigned int num);
 #endif

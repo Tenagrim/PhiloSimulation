@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_settings.c                                   :+:      :+:    :+:   */
+/*   destroy_simulation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:20:02 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 11:20:39 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/16 10:40:52 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/16 12:00:37 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void			print_settings(t_sim_settings *setts)
+static void		destroy_threads(t_simulation *sim)
 {
-	printf("phil count:     %lu\n", setts->phil_count);
-	printf("time to die:    %lu\n", setts->time_to_die);
-	printf("time to sleep:  %lu\n", setts->time_to_sleep);
-	printf("time to eat:    %lu\n", setts->time_to_eat);
-	printf("times must eat: %d\n", setts->times_must_eat);
+	free(sim->threads);
+}
+
+void			destroy_simulation(t_simulation *sim)
+{
+	destroy_forks(sim);
+	destroy_philos(sim);
+	destroy_threads(sim);
+	pthread_mutex_destroy(&(sim->out_mutex));
+	pthread_mutex_destroy(&(sim->death_trigger));
+	pthread_mutex_destroy(&(sim->get_time_mut));
 }

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_settings.c                                   :+:      :+:    :+:   */
+/*   init_simulation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:20:02 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 11:20:39 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/16 10:43:05 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/16 12:00:27 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void			print_settings(t_sim_settings *setts)
+static void		init_threads(t_simulation *sim)
 {
-	printf("phil count:     %lu\n", setts->phil_count);
-	printf("time to die:    %lu\n", setts->time_to_die);
-	printf("time to sleep:  %lu\n", setts->time_to_sleep);
-	printf("time to eat:    %lu\n", setts->time_to_eat);
-	printf("times must eat: %d\n", setts->times_must_eat);
+	sim->threads = ft_malloc(sizeof(pthread_t) * sim->settings.phil_count);
+}
+
+void			init_simulation(t_simulation *sim)
+{
+	pthread_mutex_init(&(sim->out_mutex), NULL);
+	pthread_mutex_init(&(sim->death_trigger), NULL);
+	pthread_mutex_init(&(sim->get_time_mut), NULL);
+	init_forks(sim);
+	init_philos(sim);
+	init_threads(sim);
 }

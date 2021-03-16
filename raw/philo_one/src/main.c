@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 20:05:56 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 23:20:04 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:06:10 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ int main(int ac, char **av)
 	//t_sim_settings	setts;
 	t_simulation sim;
 	check_input(ac, av);
-	get_sim_settings(&setts, av);
-	print_settings(&setts);
-	pthread_mutex_init(&(setts.out_mutex), NULL);		
-	
-	pthread_mutex_destroy(&(setts.out_mutex));
+	get_sim_settings(&sim.settings, av);
+	print_settings(&sim.settings);
+	init_simulation(&sim);
+
+	//for(int i = 0; i < sim.settings.phil_count; i++)
+	//	display_philo(sim.philos+i);
+
+	run_simulation(&sim);
+	destroy_simulation(&sim);
 }
 
 /*

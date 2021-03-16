@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_settings.c                                   :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 20:20:02 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 11:20:39 by gshona           ###   ########.fr       */
+/*   Created: 2021/03/16 20:56:59 by gshona            #+#    #+#             */
+/*   Updated: 2021/03/16 21:21:17 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void			print_settings(t_sim_settings *setts)
+void			ft_putchar_fd(int fd, char c)
 {
-	printf("phil count:     %lu\n", setts->phil_count);
-	printf("time to die:    %lu\n", setts->time_to_die);
-	printf("time to sleep:  %lu\n", setts->time_to_sleep);
-	printf("time to eat:    %lu\n", setts->time_to_eat);
-	printf("times must eat: %d\n", setts->times_must_eat);
+	write(fd, &c, 1);
+}
+
+void			ft_putunbr_fd(int fd, long unsigned int n)
+{
+	//printf("++++ %lu +++\n", n);
+	if (n < 10)
+	{
+		ft_putchar_fd(fd, n + '0');
+	}
+	else
+	{
+		ft_putunbr_fd(fd, n / 10);
+		ft_putchar_fd(fd, (n % 10) + '0');
+	}
+
 }

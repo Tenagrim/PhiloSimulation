@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:57:32 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:37:25 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/16 22:07:37 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <philo.h>
@@ -20,5 +20,5 @@ void	get_sim_settings(t_sim_settings *setts, char **av)
 	if (av[5])
 		setts->times_must_eat = ft_atoi(av[5]);
 	else
-		setts->times_must_eat = -1;
+		setts->times_must_eat = 0;
 }
