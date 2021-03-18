@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:21:40 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 22:07:51 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/18 14:53:19 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			eat(t_philo *philo)
 	*/
 	prev.tv_sec = philo->last_eat.tv_sec;
 	prev.tv_usec = philo->last_eat.tv_usec;
-	get_timestamp(&(philo->last_eat), philo->get_time_mut);
+	gettimeofday(&(philo->last_eat), philo->get_time_mut);
 	diff = get_time_diff(&prev, &philo->last_eat);
 	philo->state = ST_EATING;
 
@@ -42,10 +42,9 @@ void			eat(t_philo *philo)
 		write(2, "DEAD\n", 5);
 	unlock_f(philo->out_mutex);
 //	}
-//	display_message(philo, ST_EATING);
+	display_message(philo, ST_EATING);
 
-	
+
 	philo->times_eated += 1;
-	usleep(philo->settings->time_to_eat * 1000);
-	//usleep_from(&(philo->last_eat), philo->settings->time_to_eat, philo->out_mutex);
+	usleep_from(&(philo->last_eat), philo->settings->time_to_eat);
 }

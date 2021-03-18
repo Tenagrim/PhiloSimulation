@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 12:40:57 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 21:51:50 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/18 14:54:41 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			display_message(t_philo *philo, int state)
 
 	str = "none status";
 	//printf(">>> %p\n", philo->out_mutex);
-	get_timestamp(&t, philo->get_time_mut);
+	gettimeofday(&t, NULL);
 	time = get_time_diff(philo->start_time, &t);
 	if (state == ST_TAKE_FORK)
 		str = ("has taken a fork\n");

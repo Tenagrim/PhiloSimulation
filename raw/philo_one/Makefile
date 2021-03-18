@@ -6,7 +6,7 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
 H=includes/philo.h
 CC= gcc
-FLAGS= -O3 -Iincludes  -Wall -Wextra # -Werror 
+FLAGS= -g -Iincludes  -Wall -Wextra # -Werror 
 
 all: $(NAME)
 
