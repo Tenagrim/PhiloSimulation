@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:40:52 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 12:00:37 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 13:28:58 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 static void		destroy_threads(t_simulation *sim)
 {
+	unsigned int		i;
+	void				*ret_val;
+/*
+	i = 0;
+	while (i < sim->settings.phil_count)
+	{
+		pthread_join(sim->threads[i], &ret_val);
+		i++;
+	}
+	*/
 	free(sim->threads);
 }
 

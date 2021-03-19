@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 12:52:06 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/19 13:18:24 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 13:38:57 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ static void			*bloody_harvest(void *sea_of_bloood)
 	unsigned int	i;
 	t_timeval		good_time_to_die;
 	unsigned long	edge_of_life_and_death;
+	unsigned int	escaped;
 
 	sea = (t_simulation*)sea_of_bloood;
 	while (1)
 	{
 		i = 0;
+		escaped = 0;
 		while (i < sea->settings.phil_count)
 		{
+			if (sea->philos[i].times_eated >= sea->settings.times_must_eat)
+				escaped++;
 			get_timestamp(&good_time_to_die, &(sea->get_time_mut));
 			edge_of_life_and_death = get_time_diff(&(sea->philos[i].last_eat), &good_time_to_die);
 			if (edge_of_life_and_death > sea->settings.time_to_die)
@@ -39,6 +43,11 @@ static void			*bloody_harvest(void *sea_of_bloood)
 				return (NULL);
 			}
 			i++;
+		}
+		if (escaped == sea->settings.phil_count)
+		{
+			unlock_f(&(sea->death_trigger));
+			return (NULL);
 		}
 		usleep(P_KRAKEN_S_LUNCH);
 	}
