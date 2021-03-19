@@ -6,9 +6,10 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 20:07:28 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/19 12:45:11 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 17:06:14 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <philo.h>
 
 static int	all_numeric(int ac, char **av)
@@ -19,7 +20,7 @@ static int	all_numeric(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		if (ac >= 6 && i == ac -1 && !ft_strcmp(av[i], "--debug"))
+		if (ac >= 6 && i == ac - 1 && !ft_strcmp(av[i], "--debug"))
 		{
 			i++;
 			continue ;

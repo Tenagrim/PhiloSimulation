@@ -6,9 +6,10 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 20:03:57 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:05:39 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 17:11:26 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <philo.h>
 
 void	err_exit(char *str, int code)
@@ -16,4 +17,3 @@ void	err_exit(char *str, int code)
 	write(2, str, ft_strlen(str));
 	exit(code);
 }
-

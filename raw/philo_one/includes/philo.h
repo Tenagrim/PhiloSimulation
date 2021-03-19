@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:57:35 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/19 13:13:58 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 16:53:16 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define P_KRAKEN_S_LUNCH 150
 # define P_WT 3
 # define F_DEBUG 1
+# define F_ENDED 2
 
 typedef struct timeval	t_timeval;
 typedef pthread_mutex_t	t_mutex;
@@ -40,6 +41,9 @@ typedef struct			s_sim_settings
 	unsigned long		time_to_eat;
 	unsigned int		times_must_eat;
 	int					flags;
+	unsigned int		deaths;
+	unsigned long int	starving;
+	unsigned long int	fastest;
 }						t_sim_settings;
 
 typedef struct			s_philo
@@ -78,7 +82,6 @@ int						ft_strlen(char *str);
 void					check_input(int ac, char **av);
 void					print_settings(t_sim_settings *setts);
 int						ft_atoi(char *str);
-int						main_loop(t_simulation *sim);
 unsigned long			get_time_diff(t_timeval *t1, t_timeval *t2);
 unsigned long			get_time_udiff(t_timeval *t1, t_timeval *t2);
 void					*philo_life(void *args);
@@ -100,7 +103,8 @@ void					take_forks(t_philo *philo);
 void					drop_forks(t_philo *philo);
 void					eat(t_philo *philo);
 void					sleep_(t_philo *philo);
-void					usleep_from(t_timeval *start, unsigned long millis, t_mutex *mut);
+void					usleep_from(t_timeval *start,
+		unsigned long millis, t_mutex *mut);
 void					die(t_philo *philo);
 void					display_philo(t_philo *philo);
 void					ft_putunbr_fd(int fd, long unsigned int num);

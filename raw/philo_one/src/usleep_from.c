@@ -6,13 +6,14 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:28:32 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/19 12:38:17 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 16:37:58 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void			usleep_from(t_timeval *start, unsigned long millis, t_mutex *mut)
+void			usleep_from(t_timeval *start, unsigned long millis,
+		t_mutex *mut)
 {
 	unsigned long	udiff;
 	t_timeval		now;
