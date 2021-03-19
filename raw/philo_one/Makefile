@@ -10,7 +10,7 @@ FLAGS= -g -Iincludes  -Wall -Wextra # -Werror
 
 all: $(NAME)
 
-%.o: %.c
+%.o: %.c $(H)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(H)

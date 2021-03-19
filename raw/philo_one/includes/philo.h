@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 19:57:35 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/18 14:50:59 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 13:13:58 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 # define P_LAUNCH_RANGE 0
 # define P_WAIT_FORK_STEP 10
 # define P_USLEEP_STEP 150
+# define P_KRAKEN_S_LUNCH 150
 # define P_WT 3
+# define F_DEBUG 1
 
 typedef struct timeval	t_timeval;
 typedef pthread_mutex_t	t_mutex;
@@ -37,7 +39,7 @@ typedef struct			s_sim_settings
 	unsigned long		time_to_sleep;
 	unsigned long		time_to_eat;
 	unsigned int		times_must_eat;
-
+	int					flags;
 }						t_sim_settings;
 
 typedef struct			s_philo
@@ -62,6 +64,7 @@ typedef struct			s_simulation
 	t_philo				*philos;
 	t_mutex				*forks;
 	pthread_t			*threads;
+	pthread_t			kraken;
 	t_timeval			start_time;
 	t_mutex				out_mutex;
 	t_mutex				get_time_mut;
@@ -97,8 +100,12 @@ void					take_forks(t_philo *philo);
 void					drop_forks(t_philo *philo);
 void					eat(t_philo *philo);
 void					sleep_(t_philo *philo);
-void					usleep_from(t_timeval *start, unsigned long millis);
+void					usleep_from(t_timeval *start, unsigned long millis, t_mutex *mut);
 void					die(t_philo *philo);
 void					display_philo(t_philo *philo);
 void					ft_putunbr_fd(int fd, long unsigned int num);
+int						ft_strcmp(const char *s1, const char *s2);
+int						get_timestamp(t_timeval *tv, t_mutex *mut);
+void					unleash_the_kraken(t_simulation *sim);
+void					kill_the_kraken(t_simulation *sim);
 #endif

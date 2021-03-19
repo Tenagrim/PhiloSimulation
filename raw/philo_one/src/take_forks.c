@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:07:01 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/18 14:38:54 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 11:21:58 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		wait_for_forks(t_philo *philo)
 
 void			take_forks(t_philo *philo)
 {
-	wait_for_forks(philo);
+	//wait_for_forks(philo);
 	//printf("%d takes l fork\n", philo->num);
 	lock_f(philo->l_fork);
 	display_message(philo, ST_TAKE_FORK);

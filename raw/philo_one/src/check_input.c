@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 20:07:28 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/15 20:18:40 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 12:45:11 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <philo.h>
@@ -19,6 +19,11 @@ static int	all_numeric(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
+		if (ac >= 6 && i == ac -1 && !ft_strcmp(av[i], "--debug"))
+		{
+			i++;
+			continue ;
+		}
 		j = 0;
 		while (av[i][j])
 		{
@@ -32,8 +37,8 @@ static int	all_numeric(int ac, char **av)
 }
 
 void		check_input(int ac, char **av)
-{	
-	if (ac < 5 || ac > 6)
+{
+	if (ac < 5 || (ac > 7) || (ac == 7 && ft_strcmp(av[6], "--debug")))
 		err_exit("Wrong number of arguments\n", 1);
 	if (!all_numeric(ac, av))
 		err_exit("Wrong arguments\n", 2);

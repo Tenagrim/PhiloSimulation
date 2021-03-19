@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 23:06:04 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 15:03:48 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 13:18:10 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			init_philos(t_simulation *sim)
 		sim->philos[i].r_fork = &(sim->forks[i]);
 		sim->philos[i].get_time_mut = &(sim->get_time_mut);
 		sim->philos[i].settings = &(sim->settings);
-		//get_timestamp(&(sim->philos[i].last_eat), &(sim->get_time_mut));
+		get_timestamp(&(sim->philos[i].last_eat), &(sim->get_time_mut));
 		sim->philos[i].l_philo = &sim->philos[circuled_num(i - 1, c)];
 		sim->philos[i].r_philo = &sim->philos[circuled_num(i + 1, c)];
 		i++;

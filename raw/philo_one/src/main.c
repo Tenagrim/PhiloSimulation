@@ -6,7 +6,7 @@
 /*   By: gshona <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 20:05:56 by gshona            #+#    #+#             */
-/*   Updated: 2021/03/16 15:06:10 by gshona           ###   ########.fr       */
+/*   Updated: 2021/03/19 12:43:34 by gshona           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int main(int ac, char **av)
 	t_simulation sim;
 	check_input(ac, av);
 	get_sim_settings(&sim.settings, av);
-	print_settings(&sim.settings);
+	if (sim.settings.flags & F_DEBUG)
+		print_settings(&sim.settings);
 	init_simulation(&sim);
 
 	//for(int i = 0; i < sim.settings.phil_count; i++)
