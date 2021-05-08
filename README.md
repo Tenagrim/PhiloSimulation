@@ -1,1 +1,1 @@
-# philosophers
+# dining philosophers problem simulation
